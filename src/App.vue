@@ -1,10 +1,14 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <home />
+  </div>
 </template>
 
 <script>
+import Home from "./views/Home";
 export default {
   name: "App",
+  components: { Home },
 };
 </script>
 
@@ -37,6 +41,8 @@ aside {
 }
 html,
 body {
+  font-family: "Source Sans Pro", sans-serif;
+  background-color: #e5e5e5;
   width: 100%;
   height: 100%;
   line-height: 1;
