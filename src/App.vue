@@ -42,7 +42,7 @@ aside {
 html,
 body {
   font-family: "Source Sans Pro", sans-serif;
-  background-color: #e5e5e5;
+  background: rgba(255, 254, 251, 0.8);
   width: 100%;
   height: 100%;
   line-height: 1;

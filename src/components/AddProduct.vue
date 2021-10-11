@@ -17,11 +17,12 @@ export default {
 .ida-product {
   width: 100%;
   max-width: 332px;
-}
-.ida-product__title {
-  color: #3f3f3f;
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 35.2px;
+  .ida-product__title {
+    color: #3f3f3f;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 35.2px;
+    margin-bottom: 20px;
+  }
 }
 </style>
