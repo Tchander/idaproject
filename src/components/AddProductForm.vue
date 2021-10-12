@@ -191,14 +191,12 @@ export default {
     text-align: center;
     letter-spacing: -0.02em;
     border-radius: 10px;
-    &:hover {
-      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-      color: #49485e;
-    }
+    cursor: not-allowed;
   }
   .success-button {
     background-color: #7bae73;
     color: #fff;
+    cursor: pointer;
     &:hover {
       color: #eee;
     }
