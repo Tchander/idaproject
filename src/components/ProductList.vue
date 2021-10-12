@@ -1,10 +1,10 @@
 <template>
   <div class="ida-product-content">
-    <filter-button />
+    <sort-button @sort-cards="sortCards" />
     <div class="ida-product-list">
       <product-item
         class="ida-product-item"
-        v-for="(product, index) in products"
+        v-for="(product, index) in sortedProducts"
         :key="index"
         v-bind:product="product"
       />
@@ -13,14 +13,42 @@
 </template>
 
 <script>
-import FilterButton from "./FilterButton";
+import SortButton from "./SortButton";
 import ProductItem from "./ProductItem";
 import { mapGetters } from "vuex";
 export default {
   name: "ProductList",
-  components: { ProductItem, FilterButton },
+  components: { ProductItem, SortButton },
+  data() {
+    return {
+      sortValue: "",
+    };
+  },
   computed: {
-    ...mapGetters("products", ["products"]),
+    ...mapGetters("products", [
+      "productsByDefault",
+      "productsByMax",
+      "productsByMin",
+      "productsByName",
+    ]),
+    sortedProducts() {
+      if (this.sortValue === "default") {
+        return this.productsByDefault;
+      } else if (this.sortValue === "max") {
+        return this.productsByMax;
+      } else if (this.sortValue === "min") {
+        return this.productsByMin;
+      } else if (this.sortValue === "name") {
+        return this.productsByName;
+      } else {
+        return this.productsByDefault;
+      }
+    },
+  },
+  methods: {
+    sortCards(value) {
+      this.sortValue = value;
+    },
   },
 };
 </script>

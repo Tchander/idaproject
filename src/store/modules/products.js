@@ -36,7 +36,29 @@ export default {
     },
   },
   getters: {
-    products: (state) => state.products,
+    productsByDefault: (state) => state.products,
+    productsByName: (state) =>
+      state.products
+        .slice(0)
+        .sort((prev, next) => (next.name < prev.name ? 1 : -1)),
+    productsByMax: (state) =>
+      state.products
+        .slice(0)
+        .sort((prev, next) =>
+          Number(next.price.split(" ").join("")) <
+          Number(prev.price.split(" ").join(""))
+            ? 1
+            : -1
+        ),
+    productsByMin: (state) =>
+      state.products
+        .slice(0)
+        .sort((prev, next) =>
+          Number(prev.price.split(" ").join("")) <
+          Number(next.price.split(" ").join(""))
+            ? 1
+            : -1
+        ),
     idCounter: (state) => state.idCounter,
   },
   state: {
