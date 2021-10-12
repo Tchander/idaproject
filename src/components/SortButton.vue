@@ -2,11 +2,11 @@
   <div
     class="ida-product-sort__container"
     :class="{ 'ida-product-sort__container-margin': selectActive }"
-    @click="toggleSelector"
   >
     <div
       class="ida-product-sort"
       :class="{ 'ida-product-sort__absolute': selectActive }"
+      @click="toggleSelector"
     >
       <div
         class="ida-product-sort__selected"

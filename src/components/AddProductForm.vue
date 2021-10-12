@@ -169,6 +169,10 @@ export default {
       &:focus {
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
       }
+      @media (max-width: 319px) {
+        font-size: 10px;
+        padding: 8px 10px;
+      }
     }
     .textarea {
       resize: none;
@@ -192,6 +196,10 @@ export default {
     letter-spacing: -0.02em;
     border-radius: 10px;
     cursor: not-allowed;
+    @media (max-width: 319px) {
+      font-size: 10px;
+      padding: 10px 0;
+    }
   }
   .success-button {
     background-color: #7bae73;

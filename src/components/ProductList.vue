@@ -58,6 +58,9 @@ export default {
   width: 100%;
   max-width: 1028px;
   padding-left: 16px;
+  @media (max-width: 599px) {
+    padding-left: 0;
+  }
   .ida-product-list {
     display: flex;
     flex-wrap: wrap;
@@ -75,6 +78,12 @@ export default {
       cursor: pointer;
       &:hover {
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      }
+      @media (max-width: 1263px) {
+        flex: 0 1 50%;
+      }
+      @media (max-width: 959px) {
+        flex: 0 1 100%;
       }
     }
   }

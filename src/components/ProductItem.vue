@@ -59,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 .ida-product-item__image {
   width: 100%;
-  height: 200px;
+  height: auto;
 }
 .ida-product-item__content {
   background-color: #fffefb;
@@ -67,12 +67,18 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+  @media (max-width: 599px) {
+    padding: 8px;
+  }
   .ida-product-item__content-name {
     color: #3f3f3f;
     font-weight: 600;
     font-size: 20px;
     line-height: 25px;
     margin-bottom: 16px;
+    @media (max-width: 599px) {
+      margin-bottom: 8px;
+    }
   }
   .ida-product-item__content-description {
     color: #3f3f3f;
@@ -81,6 +87,9 @@ export default {
     line-height: 20px;
     margin-bottom: 34px;
     flex: 1 1 auto;
+    @media (max-width: 599px) {
+      margin-bottom: 20px;
+    }
   }
   .ida-product-item__content-price {
     color: #3f3f3f;
