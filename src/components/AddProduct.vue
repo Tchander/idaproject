@@ -23,6 +23,13 @@ export default {
     font-weight: 600;
     line-height: 35.2px;
     margin-bottom: 20px;
+    @media (max-width: 319px) {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+  }
+  @media (max-width: 599px) {
+    margin: 0 auto 20px auto;
   }
 }
 </style>
