@@ -28,12 +28,14 @@ export default {
 <style lang="scss" scoped>
 .ida-product-content {
   width: 100%;
+  max-width: 1028px;
   padding-left: 16px;
   .ida-product-list {
     display: flex;
     flex-wrap: wrap;
     margin: 0 -8px;
     .ida-product-item {
+      position: relative;
       display: flex;
       flex-direction: column;
       flex: 0 1 33.333%;

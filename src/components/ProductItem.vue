@@ -1,5 +1,9 @@
 <template>
-  <div v-if="product">
+  <div
+    v-if="product"
+    @mouseover="showDeleteButton = true"
+    @mouseleave="showDeleteButton = false"
+  >
     <img
       class="ida-product-item__image"
       :src="product.image"
@@ -14,16 +18,39 @@
         {{ product.price }} руб.
       </div>
     </div>
+    <div
+      v-if="showDeleteButton"
+      class="ida-product-item__delete"
+      @click="deleteCard"
+    >
+      <img
+        class="ida-product-item__delete-image"
+        src="../assets/images/deleteButton.svg"
+        alt="Delete"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "ProductItem",
   props: {
     product: {
       required: true,
       type: Object,
+    },
+  },
+  data() {
+    return {
+      showDeleteButton: false,
+    };
+  },
+  methods: {
+    ...mapActions("products", ["deleteProduct"]),
+    deleteCard() {
+      this.deleteProduct(this.product.id);
     },
   },
 };
@@ -49,6 +76,7 @@ export default {
   }
   .ida-product-item__content-description {
     color: #3f3f3f;
+    word-break: break-all;
     font-size: 16px;
     line-height: 20px;
     margin-bottom: 34px;
@@ -59,6 +87,15 @@ export default {
     font-weight: 600;
     font-size: 24px;
     line-height: 30px;
+  }
+}
+.ida-product-item__delete {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  .ida-product-item__delete-image {
+    width: 32px;
+    height: 32px;
   }
 }
 </style>
