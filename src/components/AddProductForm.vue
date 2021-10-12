@@ -59,7 +59,14 @@
         v-model="product.price"
       />
     </div>
-    <button class="ida-product__form-btn" @click="addNewProduct">
+    <button
+      class="ida-product__form-btn"
+      :class="{
+        'success-button':
+          product.name !== '' && product.image !== '' && product.price !== '',
+      }"
+      @click="addNewProduct"
+    >
       Добавить товар
     </button>
   </form>
@@ -72,6 +79,7 @@ export default {
   data() {
     return {
       product: {
+        id: null,
         name: "",
         description: "",
         image: "",
@@ -85,16 +93,18 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("products", ["products"]),
+    ...mapGetters("products", ["idCounter"]),
   },
   methods: {
-    ...mapActions("products", ["addProduct"]),
+    ...mapActions("products", ["addProduct", "incrementId"]),
     addNewProduct() {
       if (
         this.product.name !== "" &&
         this.product.image !== "" &&
         this.product.price !== ""
       ) {
+        this.product.id = this.idCounter;
+        this.incrementId();
         this.addProduct(this.product);
         this.product.name = "";
         this.product.description = "";
@@ -184,6 +194,13 @@ export default {
     &:hover {
       filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
       color: #49485e;
+    }
+  }
+  .success-button {
+    background-color: #7bae73;
+    color: #fff;
+    &:hover {
+      color: #eee;
     }
   }
   .error-message:after {
