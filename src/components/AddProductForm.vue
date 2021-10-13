@@ -2,14 +2,18 @@
   <form class="ida-product__form" @submit.prevent="">
     <div
       class="ida-product__form-section"
-      :class="{ 'error-message': errors.name === true }"
+      :class="{
+        'ida-product__form-section--error-message': errors.name === true,
+      }"
     >
       <label class="ida-product__form-section_label" for="product-name"
         >Наименование товара</label
       >
       <input
         class="ida-product__form-section_input"
-        :class="{ 'error-border': errors.name === true }"
+        :class="{
+          'ida-product__form-section_input--error-border': errors.name === true,
+        }"
         type="text"
         id="product-name"
         placeholder="Введите наименование товара"
@@ -17,11 +21,18 @@
       />
     </div>
     <div class="ida-product__form-section">
-      <label class="ida-product__form-section_label optional-label"
+      <label
+        class="
+          ida-product__form-section_label
+          ida-product__form-section_label--optional-label
+        "
         >Описание товара</label
       >
       <textarea
-        class="ida-product__form-section_input textarea"
+        class="
+          ida-product__form-section_input
+          ida-product__form-section_input--textarea
+        "
         id="product-description"
         placeholder="Введите описание товара"
         v-model="product.description"
@@ -29,14 +40,18 @@
     </div>
     <div
       class="ida-product__form-section"
-      :class="{ 'error-message': errors.image === true }"
+      :class="{
+        'ida-product__form-section--error-message': errors.name === true,
+      }"
     >
       <label class="ida-product__form-section_label" for="product-image-link"
         >Ссылка на изображение товара</label
       >
       <input
         class="ida-product__form-section_input"
-        :class="{ 'error-border': errors.image === true }"
+        :class="{
+          'ida-product__form-section_input--error-border': errors.name === true,
+        }"
         type="text"
         id="product-image-link"
         placeholder="Введите ссылку"
@@ -45,14 +60,18 @@
     </div>
     <div
       class="ida-product__form-section"
-      :class="{ 'error-message': errors.price === true }"
+      :class="{
+        'ida-product__form-section--error-message': errors.name === true,
+      }"
     >
       <label class="ida-product__form-section_label" for="product-price"
         >Цена товара</label
       >
       <input
         class="ida-product__form-section_input"
-        :class="{ 'error-border': errors.price === true }"
+        :class="{
+          'ida-product__form-section_input--error-border': errors.name === true,
+        }"
         type="text"
         id="product-price"
         placeholder="Введите цену"
@@ -62,7 +81,7 @@
     <button
       class="ida-product__form-btn"
       :class="{
-        'success-button':
+        'ida-product__form-btn--success-button':
           product.name !== '' && product.image !== '' && product.price !== '',
       }"
       @click="addNewProduct"
@@ -135,6 +154,16 @@ export default {
   .ida-product__form-section {
     margin-bottom: 13px;
     position: relative;
+    &--error-message:after {
+      content: "Поле является обязательным";
+      position: absolute;
+      top: 62px;
+      left: 2px;
+      color: #ff8484;
+      font-size: 8px;
+      line-height: 10px;
+      letter-spacing: -0.02em;
+    }
     .ida-product__form-section_label {
       position: relative;
       color: #49485e;
@@ -152,9 +181,9 @@ export default {
         background-color: #ff8484;
         border-radius: 50%;
       }
-    }
-    .optional-label:after {
-      content: none;
+      &--optional-label:after {
+        content: none;
+      }
     }
     .ida-product__form-section_input {
       width: 100%;
@@ -163,6 +192,13 @@ export default {
       line-height: 15.08px;
       border-radius: 4px;
       box-shadow: 0 2px 5px 0 #0000001a;
+      &--error-border {
+        border: 1px solid #ff8484;
+      }
+      &--textarea {
+        resize: none;
+        height: 108px;
+      }
       &::placeholder {
         color: #b4b4b4;
       }
@@ -173,13 +209,6 @@ export default {
         font-size: 10px;
         padding: 8px 10px;
       }
-    }
-    .textarea {
-      resize: none;
-      height: 108px;
-    }
-    .error-border {
-      border: 1px solid #ff8484;
     }
   }
   .ida-product__form-btn {
@@ -196,28 +225,19 @@ export default {
     letter-spacing: -0.02em;
     border-radius: 10px;
     cursor: not-allowed;
+    &--success-button {
+      background-color: #7bae73;
+      color: #fff;
+      cursor: pointer;
+      &:hover {
+        background-color: #80bd77;
+        color: #eee;
+      }
+    }
     @media (max-width: 319px) {
       font-size: 10px;
       padding: 10px 0;
     }
-  }
-  .success-button {
-    background-color: #7bae73;
-    color: #fff;
-    cursor: pointer;
-    &:hover {
-      color: #eee;
-    }
-  }
-  .error-message:after {
-    content: "Поле является обязательным";
-    position: absolute;
-    top: 62px;
-    left: 2px;
-    color: #ff8484;
-    font-size: 8px;
-    line-height: 10px;
-    letter-spacing: -0.02em;
   }
 }
 </style>

@@ -18,17 +18,19 @@
         {{ product.price }} руб.
       </div>
     </div>
-    <div
-      v-if="showDeleteButton"
-      class="ida-product-item__delete"
-      @click="deleteCard"
-    >
-      <img
-        class="ida-product-item__delete-image"
-        src="../assets/images/deleteButton.svg"
-        alt="Delete"
-      />
-    </div>
+    <transition name="fade">
+      <div
+        v-if="showDeleteButton"
+        class="ida-product-item__delete"
+        @click="deleteCard"
+      >
+        <img
+          class="ida-product-item__delete-image"
+          src="../assets/images/deleteButton.svg"
+          alt="Delete"
+        />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -60,6 +62,10 @@ export default {
 .ida-product-item__image {
   width: 100%;
   height: auto;
+  max-height: 200px;
+  @media (max-width: 959px) {
+    max-height: 100%;
+  }
 }
 .ida-product-item__content {
   background-color: #fffefb;
@@ -105,6 +111,24 @@ export default {
   .ida-product-item__delete-image {
     width: 32px;
     height: 32px;
+  }
+}
+.fade-enter-active {
+  animation: 0.5s fade forwards;
+}
+.fade-leave-active {
+  animation: 0.5s fade reverse;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>
