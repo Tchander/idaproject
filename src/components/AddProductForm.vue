@@ -53,6 +53,7 @@
       <input
         class="ida-product__form-section_input"
         :class="{ 'error-border': errors.price === true }"
+        @blur="changePriceMask"
         type="text"
         id="product-price"
         placeholder="Введите цену"
@@ -74,6 +75,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "AddProductForm",
   data() {
@@ -97,6 +99,12 @@ export default {
   },
   methods: {
     ...mapActions("products", ["addProduct", "incrementId"]),
+    changePriceMask() {
+      this.product.price = this.product.price.replace(
+        /(\d)(?=(\d\d\d)+([^\d]|$))/g,
+        "$1 "
+      );
+    },
     addNewProduct() {
       if (
         this.product.name !== "" &&
