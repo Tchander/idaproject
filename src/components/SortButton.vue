@@ -73,6 +73,7 @@ export default {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     cursor: pointer;
+    transition: 0.3s linear;
     &:hover {
       filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     }

@@ -3,7 +3,7 @@ export default {
   actions: {
     addProduct({ commit }, data) {
       try {
-        commit("addProduct", data);
+        commit("addProduct", { ...data });
       } catch (e) {
         console.log(e);
       }

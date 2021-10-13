@@ -41,7 +41,7 @@
     <div
       class="ida-product__form-section"
       :class="{
-        'ida-product__form-section--error-message': errors.name === true,
+        'ida-product__form-section--error-message': errors.image === true,
       }"
     >
       <label class="ida-product__form-section_label" for="product-image-link"
@@ -50,7 +50,8 @@
       <input
         class="ida-product__form-section_input"
         :class="{
-          'ida-product__form-section_input--error-border': errors.name === true,
+          'ida-product__form-section_input--error-border':
+            errors.image === true,
         }"
         type="text"
         id="product-image-link"
@@ -61,7 +62,7 @@
     <div
       class="ida-product__form-section"
       :class="{
-        'ida-product__form-section--error-message': errors.name === true,
+        'ida-product__form-section--error-message': errors.price === true,
       }"
     >
       <label class="ida-product__form-section_label" for="product-price"
@@ -70,7 +71,8 @@
       <input
         class="ida-product__form-section_input"
         :class="{
-          'ida-product__form-section_input--error-border': errors.name === true,
+          'ida-product__form-section_input--error-border':
+            errors.price === true,
         }"
         @blur="changePriceMask"
         type="text"
@@ -95,17 +97,19 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 
+const EMPTY_PRODUCT = {
+  id: null,
+  name: "",
+  description: "",
+  image: "",
+  price: "",
+};
+
 export default {
   name: "AddProductForm",
   data() {
     return {
-      product: {
-        id: null,
-        name: "",
-        description: "",
-        image: "",
-        price: "",
-      },
+      product: { ...EMPTY_PRODUCT },
       errors: {
         name: false,
         image: false,
@@ -133,13 +137,13 @@ export default {
         this.product.id = this.idCounter;
         this.incrementId();
         this.addProduct(this.product);
-        this.product.name = "";
-        this.product.description = "";
-        this.product.image = "";
-        this.product.price = "";
-        this.errors.name = false;
-        this.errors.image = false;
-        this.errors.price = false;
+        this.product = {
+          ...EMPTY_PRODUCT,
+          id: this.product.id,
+        };
+        ["name", "image", "price"].forEach((key) => {
+          this.errors[key] = false;
+        });
       } else {
         this.errors.name = this.product.name === "";
         this.errors.image = this.product.image === "";
@@ -156,6 +160,7 @@ export default {
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
   padding: 19px 24px;
+  transition: 0.5s linear;
   &:hover {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
@@ -200,6 +205,7 @@ export default {
       line-height: 15.08px;
       border-radius: 4px;
       box-shadow: 0 2px 5px 0 #0000001a;
+      transition: 0.3s linear;
       &--error-border {
         border: 1px solid #ff8484;
       }
