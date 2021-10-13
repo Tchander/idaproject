@@ -1,16 +1,16 @@
 <template>
   <div
     class="ida-product-sort__container"
-    :class="{ 'ida-product-sort__container-margin': selectActive }"
+    :class="{ 'ida-product-sort__container--margin': selectActive }"
   >
     <div
       class="ida-product-sort"
-      :class="{ 'ida-product-sort__absolute': selectActive }"
+      :class="{ 'ida-product-sort--absolute': selectActive }"
       @click="toggleSelector"
     >
       <div
         class="ida-product-sort__selected"
-        :class="{ 'ida-product-sort__selected-rotate': selectActive }"
+        :class="{ 'ida-product-sort__selected--rotate': selectActive }"
       >
         {{ selectedText }}
       </div>
@@ -88,9 +88,7 @@ export default {
         right: -14px;
         transition: transform 0.3s linear;
       }
-    }
-    .ida-product-sort__selected-rotate {
-      &:after {
+      &--rotate:after {
         top: 3px;
         transform: rotate(180deg);
       }
@@ -114,13 +112,13 @@ export default {
         }
       }
     }
+    &--absolute {
+      position: absolute;
+      z-index: 100;
+    }
   }
-  .ida-product-sort__absolute {
-    position: absolute;
-    z-index: 100;
+  &--margin {
+    margin-bottom: 55px;
   }
-}
-.ida-product-sort__container-margin {
-  margin-bottom: 55px;
 }
 </style>

@@ -4,8 +4,8 @@
     <div class="ida-product-list">
       <product-item
         class="ida-product-item"
-        v-for="(product, index) in sortedProducts"
-        :key="index"
+        v-for="product in sortedProducts"
+        :key="product.id"
         v-bind:product="product"
       />
     </div>
